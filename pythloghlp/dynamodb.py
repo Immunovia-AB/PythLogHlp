@@ -18,7 +18,10 @@ class DynamoFormatter(logging.Formatter):
             args=str([unicode(arg) for arg in record.args]),
             msg=str(msg)
         )
-        data = dict((k, v) for k, v in data.iteritems() if v)
+        if sys.version_info[0] >= 3:
+            data = dict((k, v) for k, v in data.items() if v)
+        else:
+            data = dict((k, v) for k, v in data.iteritems() if v)
         if 'exc_info' in data and data['exc_info']:
             data['exc_info'] = self.formatException(data['exc_info'])
         return data

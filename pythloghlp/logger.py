@@ -3,9 +3,14 @@ import logging
 import json
 import os
 import pwd
-import config
+import sys
 
-from dynamodb import DynamoHandler
+if sys.version_info[0] >= 3:
+    from . import config
+    from .dynamodb import DynamoHandler
+else:
+    import config
+    from dynamodb import DynamoHandler
 
 logger = logging.getLogger(config.Appl)
 logger.setLevel(logging.DEBUG)
