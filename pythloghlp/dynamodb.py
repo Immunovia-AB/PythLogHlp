@@ -49,4 +49,4 @@ class DynamoHandler(logging.Handler):
             del r['levelname']
             self.table.put_item(Item=r)
         except Exception as e:
-            logging.error("Unable to save log record: %s", e.message, exc_info=True)
+            logging.error("Unable to save log record: %s", e.response, exc_info=True)
