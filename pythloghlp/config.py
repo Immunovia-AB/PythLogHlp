@@ -11,10 +11,10 @@ def set(app, table, path):
     global Table
     Appl = app
     Table = table
-    if os.environ.get('AWS_REGION'):
+    if os.environ.get('AWS_DEFAULT_REGION'):
         AccessKeyId = os.environ.get('AWS_ACCESS_KEY')
-        SecretAccessKey = os.environ.get('AWS_SECRET_KEY')
-        Region = os.environ.get('AWS_REGION')
+        SecretAccessKey = os.environ.get('AWS_SECRET_ACCESS_KEY')
+        Region = os.environ.get('AWS_DEFAULT_REGION')
         LogLevel = os.environ.get('LOGLEVEL')
     else:
         f = os.path.join(os.path.dirname(path), 'config.json')
