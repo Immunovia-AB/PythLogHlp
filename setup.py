@@ -2,7 +2,7 @@ from distutils.core import setup
 setup(
   name = 'pythloghlp',
   packages = ['pythloghlp'], # this must be the same as the name above
-  version = '0.1.9',
+  version = '0.1.10',
   description = 'Python DynamoDB Log Helper',
   author = 'Gunder Biten',
   author_email = 'gunder.biten@gabcia.se',

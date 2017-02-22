@@ -11,7 +11,12 @@ def set(app, table, path):
     global Table
     Appl = app
     Table = table
-    if os.environ.get('AWS_DEFAULT_REGION'):
+    if os.environ.get('AWS_REGION'):
+        AccessKeyId = os.environ.get('AWS_ACCESS_KEY')
+        SecretAccessKey = os.environ.get('AWS_SECRET_KEY')
+        Region = os.environ.get('AWS_REGION')
+        LogLevel = os.environ.get('LOGLEVEL')
+    elif os.environ.get('AWS_DEFAULT_REGION'):
         if os.environ.get('AWS_ACCESS_KEY_ID'):
             AccessKeyId = os.environ.get('AWS_ACCESS_KEY_ID')
         else:
