@@ -33,7 +33,8 @@ class DynamoHandler(logging.Handler):
 
     def __init__(self, table_name, aws_region, aws_access_key_id, aws_secret_access_key, level=logging.NOTSET):
         logging.Handler.__init__(self, level)
-        dynamodb = boto3.resource('dynamodb', aws_access_key_id=aws_access_key_id, aws_secret_access_key=aws_secret_access_key)
+        #dynamodb = boto3.resource('dynamodb', aws_access_key_id=aws_access_key_id, aws_secret_access_key=aws_secret_access_key)
+        dynamodb = boto3.resource('dynamodb')
         self.table = dynamodb.Table(table_name)
         self.formatter = DynamoFormatter()
 
