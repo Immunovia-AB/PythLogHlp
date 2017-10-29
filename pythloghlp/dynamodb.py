@@ -48,6 +48,16 @@ class DynamoHandler(logging.Handler):
             del r['thread']
             del r['relativeCreated']
             del r['levelname']
+            del r['args']
+            del r['filename']
+            del r['funcName']
+            del r['levelno']
+            del r['lineno']
+            del r['module']
+            del r['pathname']
+            del r['process']
+            del r['processName']
+            del r['threadName']
             self.table.put_item(Item=r)
         except Exception as e:
-            logging.error("Unable to save log record: %s", e.response, exc_info=True)
+            print("Unable to save log record: %s", e)

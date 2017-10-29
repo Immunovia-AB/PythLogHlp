@@ -21,30 +21,24 @@ handler = DynamoHandler.to(config.Table,
                            config.SecretAccessKey)
 logger.addHandler(handler)
 
-def info(str, meta=None):
+def getmeta(meta):
     if meta:
-        d = {'meta': json.dumps({'Appl': config.Appl, 'User': pwd.getpwuid(os.getuid()).pw_name, 'Data': meta})}
+        parts = meta.split(';')
+        if len(parts) == 3:
+            return {'meta': json.dumps({'Appl': config.Appl, 'User': pwd.getpwuid(os.getuid()).pw_name}), 'Study': parts[0], 'Uid': parts[1], 'Requested': parts[2]}
+        else:
+            return {'meta': json.dumps({'Appl': config.Appl, 'User': pwd.getpwuid(os.getuid()).pw_name, 'Data': meta})}
     else:
-        d = {'meta': json.dumps({'Appl': config.Appl, 'User': pwd.getpwuid(os.getuid()).pw_name})}
-    logger.info(str, extra=d)
+        return {'meta': json.dumps({'Appl': config.Appl, 'User': pwd.getpwuid(os.getuid()).pw_name})}
+
+def info(str, meta=None):
+    logger.info(str, extra=getmeta(meta))
 
 def debug(str, meta=None):
-    if meta:
-        d = {'meta': json.dumps({'Appl': config.Appl, 'User': pwd.getpwuid(os.getuid()).pw_name, 'Data': meta})}
-    else:
-        d = {'meta': json.dumps({'Appl': config.Appl, 'User': pwd.getpwuid(os.getuid()).pw_name})}
-    logger.debug(str, extra=d)
+    logger.debug(str, extra=getmeta(meta))
 
 def warning(str, meta=None):
-    if meta:
-        d = {'meta': json.dumps({'Appl': config.Appl, 'User': pwd.getpwuid(os.getuid()).pw_name, 'Data': meta})}
-    else:
-        d = {'meta': json.dumps({'Appl': config.Appl, 'User': pwd.getpwuid(os.getuid()).pw_name})}
-    logger.warning(str, extra=d)
+    logger.warning(str, extra=getmeta(meta))
 
 def error(str, meta=None):
-    if meta:
-        d = {'meta': json.dumps({'Appl': config.Appl, 'User': pwd.getpwuid(os.getuid()).pw_name, 'Data': meta})}
-    else:
-        d = {'meta': json.dumps({'Appl': config.Appl, 'User': pwd.getpwuid(os.getuid()).pw_name})}
-    logger.error(str, extra=d)
+    logger.error(str, extra=getmeta(meta))
