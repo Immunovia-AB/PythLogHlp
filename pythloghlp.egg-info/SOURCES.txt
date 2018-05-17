@@ -1,0 +1,9 @@
+setup.cfg
+pythloghlp/__init__.py
+pythloghlp/config.py
+pythloghlp/dynamodb.py
+pythloghlp/logger.py
+pythloghlp.egg-info/PKG-INFO
+pythloghlp.egg-info/SOURCES.txt
+pythloghlp.egg-info/dependency_links.txt
+pythloghlp.egg-info/top_level.txt

@@ -40,9 +40,16 @@ class DynamoHandler(logging.Handler):
 
     def emit(self, record):
         try:
+            dateObject = datetime.datetime.now()
+            try:
+                endDate = dateObject.replace(year=dateObject.year + 1)
+            except ValueError::
+                endDate = dateObject.replace(year=dateObject.year + 1, day=28)
+            epoch = endDate.timestamp()
             r = self.format(record)
             r['level'] = r['levelname']
             r['timestamp'] = str(datetime.datetime.now())[:23]
+            r['ttl'] = epoch
             del r['created']
             del r['msecs']
             del r['thread']
