@@ -43,9 +43,9 @@ class DynamoHandler(logging.Handler):
             dateObject = datetime.datetime.now()
             try:
                 endDate = dateObject.replace(year=dateObject.year + 1)
-            except ValueError::
-                endDate = dateObject.replace(year=dateObject.year + 1, day=28)
-            epoch = endDate.timestamp()
+            except ValueError:
+                endDate = dateObject.replace(year=dateObject.year + 1, day=28)            
+            epoch = str(int(endDate.timestamp()))
             r = self.format(record)
             r['level'] = r['levelname']
             r['timestamp'] = str(datetime.datetime.now())[:23]
